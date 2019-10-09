@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvDescripationID"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvDataDisplayedID"
+                android:layout_width="match_parent"
+                android:layout_height="129dp"
+                android:layout_below="@+id/tvDescripationID"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/TVID4"
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_below="@+id/tvDataDisplayedID"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/TVId3"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_below="@+id/TVID4"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/TVId3"
+                android:layout_marginBottom="346dp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+
