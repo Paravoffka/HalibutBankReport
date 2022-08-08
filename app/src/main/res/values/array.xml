@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_of_buys">
+        <item>"Halibut Bank - 46146"</item>
+        <item>"English Bay - 46304"</item>
+        <item>"Georgia Strait - 46303"</item>
+        <item>Sentry Shoal - 46131</item>
+    </string-array>
+</resources>

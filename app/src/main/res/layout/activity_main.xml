@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativeLayout"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -26,12 +27,16 @@
                 android:gravity="center"
                 android:text="TextView" />
 
+
+
+
             <TextView
                 android:id="@+id/tvDataDisplayedID"
                 android:layout_width="match_parent"
                 android:layout_height="129dp"
                 android:layout_below="@+id/tvDescripationID"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="TextView" />
@@ -52,14 +57,45 @@
                 android:gravity="center"
                 android:text="TextView" />
 
+            <Spinner
+                android:id="@+id/spinnerSelectYourBouy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="111dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginRight="20dp"
+                tools:layout_marginLeft="20dp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="243dp"
+                android:layout_height="80dp"
+                android:layout_alignBottom="@+id/TVId3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="418dp"
+                android:layout_marginBottom="-99dp"
+                android:outlineSpotShadowColor="#039be5"
+
+                android:shadowColor="#039be5"
+                android:text="Historical Data"
+
+                />
+
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="110dp"
                 android:layout_below="@+id/TVId3"
-                android:layout_marginBottom="346dp"
-                app:adSize="BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+                android:layout_marginTop="113dp"
+                android:layout_marginBottom="0dp"
+                app:adSize="LARGE_BANNER"
+                app:adUnitId="ca-app-pub-3335127860004346/7787213265"></com.google.android.gms.ads.AdView>
 
         </RelativeLayout>
 
