@@ -41,6 +41,8 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
         historyTableContent();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Adding back button. Don't forget to change manifest.
     }
 
     public void historyTableContent(){

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/mapButton"
+        android:icon="@drawable/ic_mapicon"
+        android:title="View Map"
+        app:showAsAction="always"
+    ></item>
+
+    <item android:id="@+id/aboutTheApp"
+
+        android:title="About"
+        app:showAsAction="never"
+        ></item>
+
+    <item android:id="@+id/Settings"
+
+        android:title="Settings"
+        app:showAsAction="never"
+        ></item>
+
+
+</menu>
