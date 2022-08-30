@@ -85,7 +85,7 @@
                 android:outlineSpotShadowColor="#039be5"
 
                 android:shadowColor="#039be5"
-                android:text="Historical Data"
+                android:text="Past 24 Hour Conditions"
 
                 />
 
