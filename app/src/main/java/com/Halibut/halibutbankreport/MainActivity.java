@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvDescription;
     TextView tvDataDisplayed;
     public TextView tvStripeChangingColors;
-    public TextView tvCrossibilitySituation;
+    public TextView tvCrossabilitySituation;
     private AdView mAdView;
     private Button historicalButton;
     private Spinner spinnerDropBuoy;
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @Override // Working with Action Bar:
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.mapButton:oprnActivity3();
+            case R.id.mapButton:
+                openActivity3();
         }
 
         return super.onOptionsItemSelected(item);
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override //Here we're listening on spinner
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = spinnerDropBuoy.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), "You selected: " + selectedItem, Toast.LENGTH_LONG).show();   //SYstemOutPrint at the buttom of the page.
+                Toast.makeText(getApplicationContext(), "You selected: " + selectedItem, Toast.LENGTH_LONG).show();   //SystemOutPrint at the bottom of the page.
                 String descriptionOfTheApplication = "This application displays real time information about marine situation at "+ selectedItem; // Adjusting header to selected item.
 
                 tvDescription = findViewById(R.id.tvDescripationID);
@@ -95,22 +96,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         waveHigh = getCurrentDataFromHalibutBank(HalibutBank);
-                        crossibilityStripOfGeorgeaStrait(waveHigh);
+                        crossabilityStripOfGeorgiaStrait(waveHigh);
                         break;
 
                         case 1:
                             waveHigh = getCurrentDataFromHalibutBank(EnglishBay);
-                            crossibilityStripOfGeorgeaStrait(waveHigh);
+                            crossabilityStripOfGeorgiaStrait(waveHigh);
                             break;
 
                             case 2:
                                 waveHigh = getCurrentDataFromHalibutBank(GeorgiaStrait);
-                                crossibilityStripOfGeorgeaStrait(waveHigh);
+                                crossabilityStripOfGeorgiaStrait(waveHigh);
                                 break;
 
                                 case 3:
                                     waveHigh = getCurrentDataFromHalibutBank(SentryShoal);
-                                    crossibilityStripOfGeorgeaStrait(waveHigh);
+                                    crossabilityStripOfGeorgiaStrait(waveHigh);
                                     break;
                 }
             }
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     getPastData();
 }
 
-public void oprnActivity3(){
+public void openActivity3(){
     Intent intent = new Intent(this, PictureMapButNotMap.class);
     startActivity(intent);
 }
@@ -155,20 +156,20 @@ public void oprnActivity3(){
 
 
 // Methods working with data:
-    public void crossibilityStripOfGeorgeaStrait(String getwaveHigh) {
+    public void crossabilityStripOfGeorgiaStrait(String getWaveHigh) {
 
         String headerOfCrossingSituation = "This is current recommendation for you: ";
-        tvCrossibilitySituation = findViewById(R.id.TVID4);
-        TextView crossibilitySituationHeader = tvCrossibilitySituation;
-        crossibilitySituationHeader.setText(headerOfCrossingSituation);
+        tvCrossabilitySituation = findViewById(R.id.TVID4);
+        TextView crossabilitySituationHeader = tvCrossabilitySituation;
+        crossabilitySituationHeader.setText(headerOfCrossingSituation);
 
         tvStripeChangingColors = findViewById(R.id.TVId3);
         TextView crossingStripe = tvStripeChangingColors;
-        if (getwaveHigh.equals("nope")) {
+        if (getWaveHigh.equals("nope")) {
             crossingStripe.setText("Figure out where internet is gone. ");
         } else {
             try {
-                double intWaveHigh = Double.parseDouble(getwaveHigh);
+                double intWaveHigh = Double.parseDouble(getWaveHigh);
                 if (intWaveHigh == 0.1) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#4CAF50"));
                     crossingStripe.setText("Perfect conditions for crossing. Flat calm.");
@@ -198,10 +199,10 @@ public void oprnActivity3(){
         }
 
     }
-    public String getCurrentDataFromHalibutBank(String buoiLink) {
+    public String getCurrentDataFromHalibutBank(String buoyLink) {
 
         try {
-            Document wave = Jsoup.connect(buoiLink).get();
+            Document wave = Jsoup.connect(buoyLink).get();
 
             Element one = wave.select("td").get(0); // wind
             Element two = wave.select("td").get(2); // Wave height (m)
