@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -48,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mapButton:
                 openActivity3();
+                break;
+            case R.id.aboutTheApp:
+                openActivity4();
+                break;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -150,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
 
 public void openActivity3(){
     Intent intent = new Intent(this, PictureMapButNotMap.class);
+    startActivity(intent);
+}
+
+public void openActivity4(){
+    Intent intent = new Intent(this, ActivityAbout.class);
     startActivity(intent);
 }
 
