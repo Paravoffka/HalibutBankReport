@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView tvCrossibilitySituation;
     private AdView mAdView;
     private Button historicalButton;
-   // private Button showMapButton;
-    private Spinner spinnerDropBouy;
+    private Spinner spinnerDropBuoy;
     String waveHigh;
     public String HalibutBank = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146";
     public String EnglishBay = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46304";
@@ -77,16 +76,16 @@ public class MainActivity extends AppCompatActivity {
                     }
 
         //****** Trying to Add Spinner
-        spinnerDropBouy = findViewById(R.id.spinnerSelectYourBouy);
+        spinnerDropBuoy = findViewById(R.id.spinnerSelectYourBouy);
         String[] buoy = getResources().getStringArray(R.array.list_of_buys);
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, buoy);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDropBouy.setAdapter(adapter);
+        spinnerDropBuoy.setAdapter(adapter);
 
-        spinnerDropBouy.setOnItemSelectedListener((new AdapterView.OnItemSelectedListener() {
+        spinnerDropBuoy.setOnItemSelectedListener((new AdapterView.OnItemSelectedListener() {
             @Override //Here we're listening on spinner
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = spinnerDropBouy.getSelectedItem().toString();
+                String selectedItem = spinnerDropBuoy.getSelectedItem().toString();
                 Toast.makeText(getApplicationContext(), "You selected: " + selectedItem, Toast.LENGTH_LONG).show();   //SYstemOutPrint at the buttom of the page.
                 String descriptionOfTheApplication = "This application displays real time information about marine situation at "+ selectedItem; // Adjusting header to selected item.
 
