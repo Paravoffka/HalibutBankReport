@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     public void openActivity2(){
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
@@ -176,8 +175,6 @@ public void openActivity4(){
     Intent intent = new Intent(this, ActivityAbout.class);
     startActivity(intent);
 }
-
-
 
 // Methods working with data:
     public void coloringCrossabilityStripOfGeorgiaStrait(String getWaveHigh) {
@@ -257,7 +254,6 @@ public void openActivity4(){
             tvStripeChangingColors.setBackgroundColor(Color.parseColor("#c3c4c7"));
             return "nope";
         }
-
     }
 
     public void fillCrossabilityStripData(String waveHigh){
