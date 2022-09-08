@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button historicalButton;
     private Spinner spinnerDropBuoy;
     String waveHigh;
+    String buoyInfo;
     public String HalibutBank = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146";
     public String EnglishBay = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46304";
     public String GeorgiaStrait = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46303";
@@ -101,23 +102,35 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (i){
                     case 0:
-                        waveHigh = getCurrentDataFromHalibutBank(HalibutBank);
-                        crossabilityStripOfGeorgiaStrait(waveHigh);
+                        GetDataFromHalibutBank halibutB = new GetDataFromHalibutBank();
+                        buoyInfo = halibutB.getCurrentDataFromHalibutBank(HalibutBank);
+                        waveHigh = halibutB.extractCurrentWaveHighFromHalibutBank(HalibutBank);
+                        coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
+                        fillCrossabilityStripData(buoyInfo);
                         break;
 
                         case 1:
-                            waveHigh = getCurrentDataFromHalibutBank(EnglishBay);
-                            crossabilityStripOfGeorgiaStrait(waveHigh);
+                            GetDataFromHalibutBank englishB = new GetDataFromHalibutBank();
+                            buoyInfo = englishB.getCurrentDataFromHalibutBank(EnglishBay);
+                            waveHigh = englishB.extractCurrentWaveHighFromHalibutBank(EnglishBay);
+                            coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
+                            fillCrossabilityStripData(buoyInfo);
                             break;
 
                             case 2:
-                                waveHigh = getCurrentDataFromHalibutBank(GeorgiaStrait);
-                                crossabilityStripOfGeorgiaStrait(waveHigh);
+                                GetDataFromHalibutBank georgiaS = new GetDataFromHalibutBank();
+                                buoyInfo = georgiaS.getCurrentDataFromHalibutBank(GeorgiaStrait);
+                                waveHigh = georgiaS.extractCurrentWaveHighFromHalibutBank(GeorgiaStrait);
+                                coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
+                                fillCrossabilityStripData(buoyInfo);
                                 break;
 
                                 case 3:
-                                    waveHigh = getCurrentDataFromHalibutBank(SentryShoal);
-                                    crossabilityStripOfGeorgiaStrait(waveHigh);
+                                    GetDataFromHalibutBank sentryS = new GetDataFromHalibutBank();
+                                    buoyInfo = sentryS.getCurrentDataFromHalibutBank(SentryShoal);
+                                    waveHigh = sentryS.extractCurrentWaveHighFromHalibutBank(SentryShoal);
+                                    coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
+                                    fillCrossabilityStripData(buoyInfo);
                                     break;
                 }
             }
@@ -167,7 +180,7 @@ public void openActivity4(){
 
 
 // Methods working with data:
-    public void crossabilityStripOfGeorgiaStrait(String getWaveHigh) {
+    public void coloringCrossabilityStripOfGeorgiaStrait(String getWaveHigh) {
 
         String headerOfCrossingSituation = "This is current recommendation for you: ";
         tvCrossabilitySituation = findViewById(R.id.TVID4);
@@ -210,35 +223,7 @@ public void openActivity4(){
         }
 
     }
-    public String getCurrentDataFromHalibutBank(String buoyLink) {
 
-        try {
-            Document wave = Jsoup.connect(buoyLink).get();
-
-            Element one = wave.select("td").get(0); // wind
-            Element two = wave.select("td").get(2); // Wave height (m)
-            Element three = wave.select("td").get(3); // temp
-            Element Fore = wave.select("td").get(4); // wave period
-/*
-            System.out.println("Wind: " + one.text());
-            System.out.println("Wave height (m) : " + two.text());
-            System.out.println("Temperature : " + three.text() + " degree Celsius");
-            System.out.println("Wave Period : " + Fore.text() + " seconds");
-  */
-            String result = "Wind : " + one.text() + "\nWave height (m) : " + two.text()
-                    + "\nTemperature : " + three.text() + " degree Celsius" + "\nWave Period : " + Fore.text() + " seconds";
-            tvDataDisplayed = findViewById(R.id.tvDataDisplayedID);
-            tvDataDisplayed.setText(result);
-
-            return two.text();
-        } catch (Exception e) {
-            String badResult = "No Internet :(";
-            tvDataDisplayed = findViewById(R.id.tvDataDisplayedID);
-            tvDataDisplayed.setText(badResult);
-            return "nope";
-        }
-
-    }
     public String getPastData() {
         String descriptionOfTheApplication = "This application displays real time information about marine situation at Halibut Buoy Bank.";
 
@@ -273,6 +258,11 @@ public void openActivity4(){
             return "nope";
         }
 
+    }
+
+    public void fillCrossabilityStripData(String waveHigh){
+        tvDataDisplayed = findViewById(R.id.tvDataDisplayedID);
+        tvDataDisplayed.setText(waveHigh);
     }
 
 }
