@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="HalibutBank">
+        <a href="https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&amp;siteID=14305&amp;stationID=46146"></a>
+    </string>
+    <string name="EnglishBay">https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&gt;siteID=14305&gt;stationID=46146</string>
+    <string name="GeorgiaStrait"></string>
+    <string name="SentryShoal"></string>
+</resources>

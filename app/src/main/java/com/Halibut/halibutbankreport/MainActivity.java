@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         GetDataFromHalibutBank halibutB = new GetDataFromHalibutBank();
                         buoyInfo = halibutB.getCurrentDataFromHalibutBank(HalibutBank);
-                        waveHigh = halibutB.extractCurrentWaveHighFromHalibutBank(HalibutBank);
+                        waveHigh = halibutB.extractCurrentWaveHighFromBuoy(HalibutBank);
                         coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                         fillCrossabilityStripData(buoyInfo);
                         break;
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         case 1:
                             GetDataFromHalibutBank englishB = new GetDataFromHalibutBank();
                             buoyInfo = englishB.getCurrentDataFromHalibutBank(EnglishBay);
-                            waveHigh = englishB.extractCurrentWaveHighFromHalibutBank(EnglishBay);
+                            waveHigh = englishB.extractCurrentWaveHighFromBuoy(EnglishBay);
                             coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                             fillCrossabilityStripData(buoyInfo);
                             break;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             case 2:
                                 GetDataFromHalibutBank georgiaS = new GetDataFromHalibutBank();
                                 buoyInfo = georgiaS.getCurrentDataFromHalibutBank(GeorgiaStrait);
-                                waveHigh = georgiaS.extractCurrentWaveHighFromHalibutBank(GeorgiaStrait);
+                                waveHigh = georgiaS.extractCurrentWaveHighFromBuoy(GeorgiaStrait);
                                 coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                                 fillCrossabilityStripData(buoyInfo);
                                 break;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                 case 3:
                                     GetDataFromHalibutBank sentryS = new GetDataFromHalibutBank();
                                     buoyInfo = sentryS.getCurrentDataFromHalibutBank(SentryShoal);
-                                    waveHigh = sentryS.extractCurrentWaveHighFromHalibutBank(SentryShoal);
+                                    waveHigh = sentryS.extractCurrentWaveHighFromBuoy(SentryShoal);
                                     coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                                     fillCrossabilityStripData(buoyInfo);
                                     break;

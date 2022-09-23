@@ -3,19 +3,263 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="420dp"
-    android:background="@drawable/halibutpicenglwithmarkers"
+    android:layout_height="match_parent"
+
 
     android:scaleType="center"
     tools:context=".PictureMapButNotMap">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photo_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
+        android:background="@drawable/halibutpicenglwithmarkers"
         tools:layout_editor_absoluteX="-40dp"
         tools:layout_editor_absoluteY="-29dp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="440dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"
+                android:background="@android:color/white"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <!--Table Heading -->
+                <TableRow android:orientation="vertical"
+                    android:background="@color/colorPrimary">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="Buoy Name"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:padding="10sp"
+                        android:text="Wind: (knots)"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="Wave height (m):"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:padding="10sp"
+                        android:text="Temperature (°C): "
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <!--Table Data -->
+
+                <TableRow android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="Sentry Shoal"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/sentryShoalWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading... "
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/sentryShoalWaveHigh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/sentryShoalTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="Halibut Bank"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/halibutBankWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading... "
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/halibutBankWaveHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/halibutBankTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="English Bay "
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/englishBayWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading... "
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/englishBayWaveHigh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/englishBayTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="Georgia Strait"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/georgiaStraitWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading...   "
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/georgiaStraitWaveHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/georgiaStraitTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"
+                        android:padding="10sp"
+                        android:text="loading..."
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+            </TableLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

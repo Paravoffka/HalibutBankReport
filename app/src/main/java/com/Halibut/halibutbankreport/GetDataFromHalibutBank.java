@@ -33,19 +33,43 @@ public class GetDataFromHalibutBank {
         }
     }
 
-    public static String extractCurrentWaveHighFromHalibutBank(String buoyLink){
+    public static String extractCurrentWindFromBuoy(String buoyLink){
+        try{
+            Document wave = Jsoup.connect(buoyLink).get();
+            Element one = wave.select("td").get(0); // wind
+            String wind = one.text();
+            return wind;
+        }
+        catch (Exception e) {
+            return "N/A";
+        }
+    }
+
+    public static String extractCurrentWaveHighFromBuoy(String buoyLink){
         try {
             Document wave = Jsoup.connect(buoyLink).get();
 
-            Element one = wave.select("td").get(0); // wind
+        //    Element one = wave.select("td").get(0); // wind
             Element two = wave.select("td").get(2); // Wave height (m)
-            Element three = wave.select("td").get(3); // temp
-            Element Fore = wave.select("td").get(4); // wave period
+       //     Element three = wave.select("td").get(3); // temp
+        //    Element Fore = wave.select("td").get(4); // wave period
 
              return two.text();
         }catch (Exception e) {
 
-                return "nope";
+                return "N/A";
             }
+    }
+
+    public static String extractCurrentTemperatureFromBuoy(String buoyLink){
+        try{
+            Document wave = Jsoup.connect(buoyLink).get();
+            Element three = wave.select("td").get(3); // temp
+            String temperature = three.text();
+            return temperature;
+        }
+        catch (Exception e) {
+            return "N/A";
+        }
     }
 }
