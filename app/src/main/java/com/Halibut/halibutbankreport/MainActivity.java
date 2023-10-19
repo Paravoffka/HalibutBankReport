@@ -40,10 +40,17 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spinnerDropBuoy;
     String waveHigh;
     String buoyInfo;
-    public String HalibutBank = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146";
-    public String EnglishBay = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46304";
-    public String GeorgiaStrait = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46303";
-    public String SentryShoal = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46131";
+    private String HalibutBank = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46146";
+    private String EnglishBay = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46304";
+    private String GeorgiaStrait = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46303";
+    private String SentryShoal = "https://weather.gc.ca/marine/weatherConditions-currentConditions_e.html?mapID=02&siteID=14305&stationID=46131";
+
+    private String pastDataLink = "";
+
+    private String pastDataLinkHalibutBank = "https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46146";
+    private String pastDataLinkGeorgiaStraight = "https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46303";
+    private String pastDataLinkEnglishBay = "https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46304";
+    private String pastDataLinkSentryShoal = "https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46131";
 
     @Override // Working with Action Bar:
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -82,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                 StrictMode.ThreadPolicy.Builder().permitAll().build();
                         StrictMode.setThreadPolicy(policy);
                     }
-
+        historicalButton = findViewById(R.id.button);
         //****** Trying to Add Spinner
         spinnerDropBuoy = findViewById(R.id.spinnerSelectYourBouy);
         String[] buoy = getResources().getStringArray(R.array.list_of_buys);
@@ -107,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                         waveHigh = halibutB.extractCurrentWaveHighFromBuoy(HalibutBank);
                         coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                         fillCrossabilityStripData(buoyInfo);
+                        historicalButton.setText("Past 24 Hour Conditions for Halibut Bank");
+                        pastDataLink = pastDataLinkHalibutBank;
                         break;
 
                         case 1:
@@ -115,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                             waveHigh = englishB.extractCurrentWaveHighFromBuoy(EnglishBay);
                             coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                             fillCrossabilityStripData(buoyInfo);
+                            historicalButton.setText("Past 24 Hour Conditions for English Bay");
+                            pastDataLink = pastDataLinkEnglishBay;
                             break;
 
                             case 2:
@@ -123,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
                                 waveHigh = georgiaS.extractCurrentWaveHighFromBuoy(GeorgiaStrait);
                                 coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                                 fillCrossabilityStripData(buoyInfo);
+                                historicalButton.setText("Past 24 Hour Conditions for Georgia Strait");
+                                pastDataLink = pastDataLinkGeorgiaStraight;
                                 break;
 
                                 case 3:
@@ -131,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
                                     waveHigh = sentryS.extractCurrentWaveHighFromBuoy(SentryShoal);
                                     coloringCrossabilityStripOfGeorgiaStrait(waveHigh);
                                     fillCrossabilityStripData(buoyInfo);
+                                    historicalButton.setText("Past 24 Hour Conditions for Sentry Shoal");
+                                    pastDataLink = pastDataLinkSentryShoal;
                                     break;
                 }
             }
@@ -142,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         //********************************** Historical part is not working experiment yet
-
-        historicalButton = findViewById(R.id.button);
         historicalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,9 +174,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivity2(){
+       // Intent intent = new Intent(this, Activity2.class);
+     //   startActivity(intent);
+  //  getPastData();
         Intent intent = new Intent(this, Activity2.class);
+        intent.putExtra("pastDataLink", pastDataLink);
         startActivity(intent);
-    getPastData();
 }
 
 public void openActivity3(){
@@ -191,19 +207,19 @@ public void openActivity4(){
         } else {
             try {
                 double intWaveHigh = Double.parseDouble(getWaveHigh);
-                if (intWaveHigh == 0.1) {
+                if (intWaveHigh <= 0.1) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#4CAF50"));
                     crossingStripe.setText("Perfect conditions for crossing. Flat calm.");
-                } else if (intWaveHigh == 0.2) {
+                } else if (intWaveHigh <= 0.2) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#FFEB3B"));
                     crossingStripe.setText("Comfortable crossing.");
-                } else if (intWaveHigh == 0.3) {
+                } else if (intWaveHigh <= 0.3) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#FBC02D"));
                     crossingStripe.setText("Possible but NOT Comfortable crossing.");
-                } else if (intWaveHigh == 0.4) {
+                } else if (intWaveHigh <= 0.4) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#FF5722"));
                     crossingStripe.setText("It's possible but you won't be happy crossing it.");
-                } else if (intWaveHigh == 0.5) {
+                } else if (intWaveHigh <= 0.5) {
                     crossingStripe.setBackgroundColor(Color.parseColor("#D32F2F"));
                     crossingStripe.setText("Crossing possible but you better stay at home");
                 } else if (intWaveHigh > 0.5 && intWaveHigh < 1.0) {
@@ -219,41 +235,6 @@ public void openActivity4(){
             }
         }
 
-    }
-
-    public String getPastData() {
-        String descriptionOfTheApplication = "This application displays real time information about marine situation at Halibut Buoy Bank.";
-
-        tvDescription = findViewById(R.id.tvDescripationID);
-        tvDescription.setText(descriptionOfTheApplication);
-
-        try {
-            Document wave = Jsoup.connect("https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46146").get();
-
-            Element one = wave.select("td").get(0); // wind
-            Element two = wave.select("td").get(2); // Wave height (m)
-            Element three = wave.select("td").get(3); // temp
-            Element Fore = wave.select("td").get(4); // wave period
-/*
-            System.out.println("Wind: " + one.text());
-            System.out.println("Wave height (m) : " + two.text());
-            System.out.println("Temperature : " + three.text() + " degree Celsius");
-            System.out.println("Wave Period : " + Fore.text() + " seconds");
-  */
-            String result = "Wind : " + one.text() + "\nWave height (m) : " + two.text()
-                    + "\nTemperature : " + three.text() + " degree Celsius" + "\nWave Period : " + Fore.text() + " seconds";
-            tvDataDisplayed = findViewById(R.id.tvDataDisplayedID);
-            tvDataDisplayed.setText(result);
-
-            return two.text();
-        } catch (Exception e) {
-            String badResult = "No Internet :(";
-            tvDataDisplayed = findViewById(R.id.tvDataDisplayedID);
-            tvDataDisplayed.setText(badResult);
-            tvStripeChangingColors = findViewById(R.id.TVId3);
-            tvStripeChangingColors.setBackgroundColor(Color.parseColor("#c3c4c7"));
-            return "nope";
-        }
     }
 
     public void fillCrossabilityStripData(String waveHigh){

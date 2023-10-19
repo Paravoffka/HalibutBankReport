@@ -2,8 +2,20 @@ package com.Halibut.halibutbankreport;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Window;
+import android.widget.HorizontalScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,104 +25,98 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 
 public class Activity2 extends AppCompatActivity {
-    TextView tvCelltest6;
-    TextView tvCell_1;
-    TextView tvCell_2;
-    TextView tvCell_3;
-    TextView tvCell_4;
-    TextView tvCell_5;
-    TextView tvCell_6;
-    TextView tvCell_7;
-    TextView tvCell_8;
-    TextView tvCell_9;
-    TextView tvCell_10;
-    TextView tvCell_11;
-    TextView tvCell_12;
-    TextView tvCell_13;
-    TextView tvCell_14;
-    TextView tvCell_15;
-    TextView tvCell_16;
-    TextView tvCell_17;
-    TextView tvCell_18;
-    TextView tvCell_19;
-    TextView tvCell_20;
-    TextView tvCell_21;
 
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2);
-        historyTableContent();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Adding back button. Don't forget to change manifest.
+        setContentView(R.layout.activity_2);
+        String[][] pastDataFromTheBuoy;
+        String pastDataLink = getIntent().getStringExtra("pastDataLink");
+
+        // Determine the header text based on pastDataLink
+        String headerText;
+        if (pastDataLink != null) {
+            if (pastDataLink.contains("46146")) {
+                headerText = "Past data for Halibut Bank";
+            } else if (pastDataLink.contains("46304")) {
+                headerText = "Past data for English Bay";
+            }  else if (pastDataLink.contains("46303")) {
+                headerText = "Past data for Georgia Straight";
+            }  else if (pastDataLink.contains("46131")) {
+                headerText = "Past data for Sentry Shoal";
+            }  else {
+                headerText = "Past Data"; // Default header text if pastDataLink doesn't match any specific case
+            }
+        } else {
+            headerText = "Past Data"; // Default header text if pastDataLink is null
+        }
+
+        setTitle(headerText); // Set the title of the activity
+
+        GetDataFromHalibutBank pastData = new GetDataFromHalibutBank();
+        pastDataFromTheBuoy = pastData.getPastDataFromTheBuoy(pastDataLink);
+        init(pastDataFromTheBuoy);
+
+
+        // Adding some Add:
+
+        // Initialize and load the ad
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = findViewById(R.id.adViewActivity2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
     }
 
-    public void historyTableContent(){
-        tvCell_1 = findViewById(R.id.cell_1);
-        tvCell_2 = findViewById(R.id.cell_2);
-        tvCell_3 = findViewById(R.id.cell_3);
-        tvCell_4 = findViewById(R.id.cell_4);
-        tvCell_5 = findViewById(R.id.cell_5);
-        tvCell_6 = findViewById(R.id.cell_6);
-        tvCell_7 = findViewById(R.id.cell_7);
-        tvCell_8 = findViewById(R.id.cell_8);
-        tvCell_9 = findViewById(R.id.cell_9);
-        tvCell_10 = findViewById(R.id.cell_10);
-        tvCell_11 = findViewById(R.id.cell_11);
-        tvCell_12 = findViewById(R.id.cell_12);
-        tvCell_13 = findViewById(R.id.cell_13);
-        tvCell_14 = findViewById(R.id.cell_14);
-        tvCell_15 = findViewById(R.id.cell_15);
-        ArrayList<TextView> arraylisttextiew = new ArrayList<TextView>();
-        arraylisttextiew.add(tvCell_1);
-        arraylisttextiew.add(tvCell_2);
-        arraylisttextiew.add(tvCell_3);
-        arraylisttextiew.add(tvCell_4);
-        arraylisttextiew.add(tvCell_5);
-        arraylisttextiew.add(tvCell_6);
-        arraylisttextiew.add(tvCell_7);
-        arraylisttextiew.add(tvCell_8);
-        arraylisttextiew.add(tvCell_9);
-        arraylisttextiew.add(tvCell_10);
-        arraylisttextiew.add(tvCell_11);
-        arraylisttextiew.add(tvCell_12);
-        arraylisttextiew.add(tvCell_13);
-        arraylisttextiew.add(tvCell_14);
-        arraylisttextiew.add(tvCell_15);
-        arraylisttextiew.add(tvCell_16);
-        arraylisttextiew.add(tvCell_17);
-        arraylisttextiew.add(tvCell_18);
-        arraylisttextiew.add(tvCell_19);
-        arraylisttextiew.add(tvCell_20);
-        arraylisttextiew.add(tvCell_21);
 
+public void init(String[][] pastDataFromTheBuoy) {
+    TableLayout stk = (TableLayout) findViewById(R.id.table_main);
 
-        tvCelltest6 = findViewById(R.id.cell6);
+    // Create the header row
+    TableRow headerRow = new TableRow(this);
+    String[] headerLabels = {
+            "Date / Time (PDT) ",
+            " Wind (knots) ",
+            " Wave height (m) ",
+            " Wave period (s) ",
+            " Pressure (kPa) ",
+            " Air temp (°C) ",
+            " Water temp (°C)"
+    };
+    for (String label : headerLabels) {
+        TextView headerTextView = new TextView(this);
+        headerTextView.setText(label);
+        headerTextView.setTextColor(Color.WHITE);
+        headerRow.addView(headerTextView);
+    }
+    stk.addView(headerRow);
 
-        ArrayList<String> glist = new ArrayList<String>();
-      /*  try {
-            Document wave = Jsoup.connect("https://weather.gc.ca/marine/weatherConditions-24hrObsHistory_e.html?mapID=02&siteID=14305&stationID=46146").get();
-            Elements elem = wave.select("table.table"); //tbody
-            String yacheika;
-            for (Element e :elem.select("tr td")){
-
-                yacheika =  e.select("td.t-center").text().trim();
-                glist.add(yacheika);
-            }
-
-            System.out.println("Size is:  " + glist.size());
-
-            TextView toprint;
-            for (int i = 0; i < 21; i++) {
-               TextView  = findViewById(R.id.cell_+(i));
-                toprint = arraylisttextiew.get(i);
-                toprint.setText(glist.get(i));
+    for (String[] rowData : pastDataFromTheBuoy) {
+        boolean hasData = false;
+        TableRow dataRow = new TableRow(this);
+        for (String cellValue : rowData) {
+            if (cellValue != null && !cellValue.isEmpty()) {
+                hasData = true;
+                TextView dataTextView = new TextView(this);
+                dataTextView.setText(cellValue);
+                dataTextView.setTextColor(Color.WHITE);
+                dataTextView.setGravity(Gravity.CENTER);
+                dataRow.addView(dataTextView);
             }
         }
-        catch (Exception e) {
-            System.out.println("No Internet :(");
-
-        }*/
+        if (hasData) {
+            stk.addView(dataRow);
+        }
     }
+}
+
 
 }
