@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/mapButton"
-        android:icon="@drawable/ic_mapicon"
+        android:icon="@drawable/baseline_map_24"
         android:title="View Map"
         app:showAsAction="always"
     ></item>
@@ -14,11 +14,16 @@
         app:showAsAction="never"
         ></item>
 
-    <item android:id="@+id/Settings"
+    <item
+        android:id="@+id/alarmSettings"
 
-        android:title="Settings"
-        app:showAsAction="never"
-        ></item>
+        android:title="Alarm Settings"
+        app:showAsAction="never"></item>
 
+    <item
+        android:id="@+id/regionSummary"
+
+        android:title="Regional Summary"
+        app:showAsAction="never"></item>
 
 </menu>

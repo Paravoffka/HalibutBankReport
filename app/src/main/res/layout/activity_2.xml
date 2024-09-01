@@ -1,51 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-
+    android:background="#3d455b"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#3d455b"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
         <HorizontalScrollView
             android:id="@+id/hscrll1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/RelativeLayout1"
+            <TableLayout
+                android:id="@+id/table_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:gravity="center">
 
-                <!-- Add another HorizontalScrollView for the table -->
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!-- Your table content here -->
 
-                    <TableLayout
-                        android:id="@+id/table_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:gravity="center">
-
-                        <!-- Your table content here -->
-
-                    </TableLayout>
-                </HorizontalScrollView>
-
-            </RelativeLayout>
+            </TableLayout>
         </HorizontalScrollView>
     </ScrollView>
 
@@ -53,7 +35,10 @@
         android:id="@+id/adViewActivity2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/scrollView1"
         android:layout_alignParentBottom="true"
         app:adSize="LARGE_BANNER"
-        app:adUnitId="ca-app-pub-3335127860004346/7787213265"></com.google.android.gms.ads.AdView>
-</LinearLayout>
+        app:adUnitId="ca-app-pub-3335127860004346/7787213265"
+        android:layout_marginTop="8dp">
+    </com.google.android.gms.ads.AdView>
+</RelativeLayout>

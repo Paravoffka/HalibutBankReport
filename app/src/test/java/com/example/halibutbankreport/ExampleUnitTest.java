@@ -1,4 +1,4 @@
-package com.Halibut.halibutbankreport;
+package com.Halibut.halibutbankreportweather;
 
 import org.junit.Test;
 

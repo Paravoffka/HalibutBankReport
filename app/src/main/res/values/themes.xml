@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <!-- Reference AppTheme from styles.xml -->
+    <style name="AppTheme1" parent="Base.AppTheme1"> <!-- Reference the AppTheme from styles.xml -->
+        <!-- Any additional attributes or modifications can go here -->
+        <item name="android:actionBarSize">32dp</item>
+    </style>
+</resources>

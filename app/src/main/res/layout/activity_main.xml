@@ -9,8 +9,8 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    
-
+    <include
+        layout = "@layout/custom_toolbar" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,10 +27,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="TextView" />
-
-
-
+                android:text="Loading..." />
 
             <TextView
                 android:id="@+id/tvDataDisplayedID"
@@ -41,7 +38,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="Loading..." />
 
             <TextView
                 android:id="@+id/TVID4"
@@ -49,7 +46,7 @@
                 android:layout_height="86dp"
                 android:layout_below="@+id/tvDataDisplayedID"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="Loading..." />
 
             <TextView
                 android:id="@+id/TVId3"
@@ -57,7 +54,7 @@
                 android:layout_height="68dp"
                 android:layout_below="@+id/TVID4"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="Loading..." />
 
             <Spinner
                 android:id="@+id/spinnerSelectYourBouy"
@@ -72,36 +69,53 @@
                 android:layout_marginRight="20dp"
                 tools:layout_marginLeft="20dp" />
 
+            <!--      <Button
+                      android:id="@+id/button"
+                      android:layout_width="243dp"
+                      android:layout_height="80dp"
+                      android:layout_alignBottom="@+id/TVId3"
+                      android:layout_alignParentStart="true"
+                      android:layout_alignParentTop="true"
+                      android:layout_marginStart="95dp"
+                      android:layout_marginTop="418dp"
+                      android:layout_marginBottom="-99dp"
+                      android:outlineSpotShadowColor="#039be5"
+                      android:shadowColor="#039be5"
+                      android:text="Past 24 Hour Conditions"
+                      /> -->
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="243dp"
                 android:layout_height="80dp"
-                android:layout_alignBottom="@+id/TVId3"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="95dp"
-                android:layout_marginTop="418dp"
-                android:layout_marginBottom="-99dp"
-                android:outlineSpotShadowColor="#039be5"
-
-                android:shadowColor="#039be5"
-                android:text="Past 24 Hour Conditions"
-
-                />
-
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
                 android:layout_below="@+id/TVId3"
-                android:layout_marginTop="113dp"
-                android:layout_marginBottom="0dp"
-                app:adSize="LARGE_BANNER"
-                app:adUnitId="ca-app-pub-3335127860004346/7787213265"></com.google.android.gms.ads.AdView>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:outlineSpotShadowColor="#039be5"
+                android:shadowColor="#039be5"
+                android:text="Past 24 Hour Conditions" />
 
-        </RelativeLayout>
+            <!--      <com.google.android.gms.ads.AdView
+                      android:id="@+id/adView"
+                      android:layout_width="match_parent"
+                      android:layout_height="110dp"
+                      android:layout_below="@+id/TVId3"
+                      android:layout_marginTop="113dp"
+                      android:layout_marginBottom="0dp"
+                      app:adSize="LARGE_BANNER"
+                      app:adUnitId="ca-app-pub-3335127860004346/7787213265"></com.google.android.gms.ads.AdView>
+ -->
+              </RelativeLayout>
 
-    </ScrollView>
+          </ScrollView>
 
-</RelativeLayout>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        app:adSize="LARGE_BANNER"
+        app:adUnitId="ca-app-pub-3335127860004346/7787213265"/>
+
+      </RelativeLayout>
 

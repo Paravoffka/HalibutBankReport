@@ -1,34 +1,62 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34
     defaultConfig {
-        applicationId "com.Halibut.halibutbankreport"
-        minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 2
-        versionName "1.1"
+        applicationId "com.Halibut.halibutbankreportweather"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 7
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'com.Halibut.halibutbankreport'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.gms:play-services-ads:18.2.0'
+    implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'androidx.test.ext:junit:1.1.5'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.navigation:navigation-fragment:2.7.4'
+    implementation 'androidx.navigation:navigation-ui:2.7.4'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:3.0.2'
+
+  //  implementation ('com.google.android.play:core:1.10.3') {
+  //      exclude group: 'com.google.android.play', module: 'app-update'
+   // }
+    implementation 'com.google.android.play:review:2.0.1'
+    implementation 'com.google.android.play:app-update:2.1.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':jsoup-1.12.1')
+    implementation "androidx.work:work-runtime:2.7.0"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.core:core:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.code.gson:gson:2.8.8'
 
-
+    implementation "com.google.guava:guava:31.0.1-android"
 }
+
+
